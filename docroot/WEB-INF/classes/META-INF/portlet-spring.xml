@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.ability.genero.server.service.auditoriaLocalService" class="com.ability.genero.server.service.impl.auditoriaLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.auditoriaPersistence" class="com.ability.genero.server.service.persistence.auditoriaPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.casoLVLocalService" class="com.ability.genero.server.service.impl.casoLVLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.casoLVPersistence" class="com.ability.genero.server.service.persistence.casoLVPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.categoriaLocalService" class="com.ability.genero.server.service.impl.categoriaLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.categoriaPersistence" class="com.ability.genero.server.service.persistence.categoriaPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.claseProcesoLocalService" class="com.ability.genero.server.service.impl.claseProcesoLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.claseProcesoPersistence" class="com.ability.genero.server.service.persistence.claseProcesoPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.distritoGLocalService" class="com.ability.genero.server.service.impl.distritoGLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.distritoGPersistence" class="com.ability.genero.server.service.persistence.distritoGPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.encuestaCriteriosLocalService" class="com.ability.genero.server.service.impl.encuestaCriteriosLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.encuestaCriteriosPersistence" class="com.ability.genero.server.service.persistence.encuestaCriteriosPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.encuestaEnfoDifeLocalService" class="com.ability.genero.server.service.impl.encuestaEnfoDifeLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.encuestaEnfoDifePersistence" class="com.ability.genero.server.service.persistence.encuestaEnfoDifePersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.generoUsuarioLocalService" class="com.ability.genero.server.service.impl.generoUsuarioLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.generoUsuarioPersistence" class="com.ability.genero.server.service.persistence.generoUsuarioPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.generoUsuarioComiteLocalService" class="com.ability.genero.server.service.impl.generoUsuarioComiteLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.generoUsuarioComitePersistence" class="com.ability.genero.server.service.persistence.generoUsuarioComitePersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.juresprudenciaInternacionalLocalService" class="com.ability.genero.server.service.impl.juresprudenciaInternacionalLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.juresprudenciaInternacionalPersistence" class="com.ability.genero.server.service.persistence.juresprudenciaInternacionalPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.juresprudenciaNacionalLocalService" class="com.ability.genero.server.service.impl.juresprudenciaNacionalLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.juresprudenciaNacionalPersistence" class="com.ability.genero.server.service.persistence.juresprudenciaNacionalPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.normasInteracionalesLocalService" class="com.ability.genero.server.service.impl.normasInteracionalesLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.normasInteracionalesPersistence" class="com.ability.genero.server.service.persistence.normasInteracionalesPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.normasNacionalesLocalService" class="com.ability.genero.server.service.impl.normasNacionalesLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.normasNacionalesPersistence" class="com.ability.genero.server.service.persistence.normasNacionalesPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.preguntasClaveLocalService" class="com.ability.genero.server.service.impl.preguntasClaveLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.preguntasClavePersistence" class="com.ability.genero.server.service.persistence.preguntasClavePersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.subcategoriaLocalService" class="com.ability.genero.server.service.impl.subcategoriaLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.subcategoriaPersistence" class="com.ability.genero.server.service.persistence.subcategoriaPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+	<bean id="com.ability.genero.server.service.tipoDecisionLocalService" class="com.ability.genero.server.service.impl.tipoDecisionLocalServiceImpl" />
+	<bean id="com.ability.genero.server.service.persistence.tipoDecisionPersistence" class="com.ability.genero.server.service.persistence.tipoDecisionPersistenceImpl" parent="basePersistence">
+		<property name="dataSource" ref="base_datos_csjDataSource" />
+	</bean>
+</beans>

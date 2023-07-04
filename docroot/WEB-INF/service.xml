@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+<service-builder package-path="com.ability.genero.server">
+	<author>DELL Villartech</author>
+	<namespace>genero</namespace>
+
+	<!-- <entity name="ciudades" table="VC_CIUDADES" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="codigo" 		db-name="CODIGO"  	type="String" 	primary="true"></column>
+		<column name="nombre" 		db-name="NOMBRE" 	type="String"></column>
+		<order by="asc">
+			<order-column name="nombre" order-by="asc"></order-column>
+		</order>
+	</entity> -->
+	
+	<!-- <entity name="entidad" table="VC_ENTIDAD" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 			db-name="ID"  		type="int" 		primary="true"></column>
+		<column name="nombre" 		db-name="NOMBRE" 	type="String"></column>
+		<order by="asc">
+			<order-column name="nombre" order-by="asc"></order-column>
+		</order>
+	</entity> -->
+	
+	<!-- <entity name="especialidad" table="VC_ESPECIALIDAD" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 			db-name="ID"  		type="int" 		primary="true"></column>
+		<column name="nombre" 		db-name="NOMBRE" 	type="String"></column>
+		<order by="asc">
+			<order-column name="nombre" order-by="asc"></order-column>
+		</order>
+	</entity> -->
+	
+	<entity name="generoUsuario" table="GENERO_USUARIOS" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="despacho" 		db-name="DESPACHO" 			type="String"></column>
+		<column name="userId" 			db-name="USER_ID" 			type="String"></column>
+		<column name="fecha_creacion" 	db-name="FECHA_CREACION" 	type="Date"></column>
+		<finder return-type="generoUsuario" name="porUsuario" unique="true">
+			<finder-column name="userId"></finder-column>
+		</finder>
+	</entity>
+	
+	<entity name="generoUsuarioComite" table="GENERO_USUARIOS_COMITE" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="Distrito" 		db-name="DISTRITO" 			type="String"></column>
+		<column name="userId" 			db-name="USER_ID" 			type="String"></column>
+		<column name="fecha_creacion" 	db-name="FECHA_CREACION" 	type="Date"></column>
+		<finder return-type="Collection" name="porUsuario" unique="true">
+			<finder-column name="userId"></finder-column>
+		</finder>
+	</entity>
+	
+	<entity name="categoria" table="GENERO_CATEGORIA" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 			db-name="ID"  		type="int" 		primary="true"></column>
+		<column name="categoria" 	db-name="CATEGORIA" 	type="String"></column>
+		<order by="asc">
+			<order-column name="categoria" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="subcategoria" table="GENERO_SUBCATEGORIA" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  			type="int" 		primary="true"></column>
+		<column name="idCategoria" 		db-name="ID_CATEGORIA" 	type="int"></column>
+		<column name="subcategoria" 	db-name="SUBCATEGORIA" 	type="String"></column>
+		<column name="url" 				db-name="URL" 			type="String"></column>
+		<order by="asc">
+			<order-column name="subcategoria" order-by="asc"></order-column>
+		</order>
+		<finder return-type="Collection" name="subCatXCat">
+			<finder-column name="idCategoria"></finder-column>
+		</finder>
+	</entity>
+	
+	<entity name="tipoDecision" table="GENERO_TIPO_DECISION" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="tipoDecision" 	db-name="TIPO_DECISION" 	type="String"></column>
+		<order by="asc">
+			<order-column name="tipoDecision" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="encuestaEnfoDife" table="GENERO_ENCUESTA_ENFOQUEDIFERENCIAL" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="pregunta" 		db-name="PREGUNTA" 			type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="encuestaCriterios" table="GENERO_ENCUESTA_CRITERIOS" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="pregunta" 		db-name="PREGUNTA" 			type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="preguntasClave" table="GENERO_PREGUNTAS_CLAVES" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="pregunta" 		db-name="PREGUNTA" 			type="String"></column>
+		<column name="respuesta" 		db-name="RESPUESTA" 		type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="normasNacionales" table="GENERO_NORMAS_NACIONALES" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="normativas" 		db-name="NORMATIVAS" 		type="String"></column>
+		<column name="anhio" 			db-name="ANHIO" 			type="String"></column>
+		<column name="url" 				db-name="URL" 				type="String"></column>
+		<column name="ambito" 			db-name="AMBITO" 			type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="normasInteracionales" table="GENERO_NORMAS_INTERNACIONALES" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="conferencias" 	db-name="CONFERENCIAS" 		type="String"></column>
+		<column name="anhio" 			db-name="ANHIO" 			type="String"></column>
+		<column name="url" 				db-name="URL" 				type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="juresprudenciaNacional" table="GENERO_JURISPRUDENCIA_NACIONAL" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="referencias" 		db-name="REFERENCIAS" 		type="String"></column>
+		<column name="corporacion" 		db-name="CORPORACION" 		type="String"></column>
+		<column name="url" 				db-name="URL" 				type="String"></column>
+		<column name="ambito" 			db-name="AMBITO" 			type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="juresprudenciaInternacional" table="GENERO_JURISPRUDENCIA_INTERNACIONAL" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID"  				type="int" 		primary="true"></column>
+		<column name="referencias" 	    db-name="REFERENCIAS" 		type="String"></column>
+		<column name="anhio" 			db-name="ANHIO" 			type="String"></column>
+		<column name="url" 				db-name="URL" 				type="String"></column>
+		<order by="asc">
+			<order-column name="id" order-by="asc"></order-column>
+		</order>
+	</entity>
+	
+	<entity name="casoLV" table="GENERO_LV_CASO" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID" 				type="int"		primary="true"></column>
+		<column name="despacho" 		db-name="DESPACHO"			type="String"></column>
+		<column name="radicacion" 		db-name="RADICACION"		type="String"></column>
+		<column name="demandante" 		db-name="DEMANDANTE" 		type="String"></column>
+		<column name="demandado" 		db-name="DEMANDADO"			type="String"></column>
+		<column name="claseProceso" 	db-name="CLASE_PROCESO"		type="String"></column>
+		<column name="tipoDecision" 	db-name="TIPO_DECISION" 	type="String"></column>
+		<column name="ponente" 			db-name="PONENTE"			type="String"></column>
+		<column name="fecha" 			db-name="FECHA"				type="Date"></column>
+		<column name="categoria" 		db-name="CATEGORIA"			type="String"></column>
+		<column name="subCategoria" 	db-name="SUBCATEGORIA"		type="String"></column>
+		<column name="respuestas1" 		db-name="RESPUESTAS1"		type="String"></column>
+		<column name="respuestas2" 		db-name="RESPUESTAS2"		type="String"></column>
+		<column name="anhio"			db-name="ANHIO" 			type="String"></column>
+		<column name="generoDemandante"	db-name="GENERODEMANDANTE" 	type="String"></column>
+		<column name="generoDemandado"	db-name="GENERODEMANDADO" 	type="String"></column>
+		<column name="archivo"			db-name="ARCHIVO" 			type="String"></column>
+		
+		<order by="desc">
+			<order-column name="fecha" order-by="desc"></order-column>
+		</order>
+		<finder return-type="Collection" name="porDespacho">
+			<finder-column name="despacho"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="porAnhio">
+			<finder-column name="despacho"></finder-column>
+			<finder-column name="anhio"></finder-column>
+		</finder>
+		<finder return-type="Collection" name="porAnhioAdmin">
+			<finder-column name="anhio"></finder-column>
+		</finder>
+	</entity>
+	
+	<!-- <entity name="despacho" table="VC_DESPACHO" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID" 				type="int" primary="true"></column>
+		<column name="jurisdiccion" 	db-name="JURISDICCION"		type="String"></column>
+		<column name="distrito" 		db-name="DISTRITO"			type="String"></column>
+		<column name="circuito" 		db-name="CIRCUITO"			type="String"></column>
+		<column name="municipio" 		db-name="MUNICIPIO"			type="String"></column>
+		<column name="codigoDespacho" 	db-name="CODIGO_DESPACHO"	type="String"></column>
+		<column name="nombre" 			db-name="NOMBRE"			type="String"></column>
+		<column name="juesDespacho" 	db-name="JUEZ_DESPACHO"		type="String"></column>
+		<column name="Correo" 			db-name="CORREO_DESPACHO"	type="String"></column>
+		<column name="direccion" 		db-name="DIRECCION"			type="String"></column>
+		<column name="telefono" 		db-name="TELEFONO"			type="String"></column>
+		<column name="horario" 			db-name="HORARIO_ATENCION"	type="String"></column>
+		<column name="area" 			db-name="AREA"				type="String"></column>
+		<column name="departamento" 	db-name="DEPARTAMENTO"		type="String"></column>
+		<order by="asc">
+			<order-column name="nombre" order-by="asc"></order-column>
+		</order>
+		<finder return-type="Collection" name="porDespacho">
+			<finder-column name="codigoDespacho"></finder-column>
+		</finder>
+	</entity> -->
+	
+	<entity name="claseProceso" table="GENERO_CLASE_PROCESO" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID" 				type="int" primary="true"></column>
+		<column name="claseProceso" 	db-name="CLASE_PROCESO"		type="String"></column>
+	</entity>
+	
+	<entity name="auditoria" table="GENERO_AUDITORIA" cache-enabled="false" remote-service="false" local-service="true" data-source="base_datos_csjDataSource">
+		<column name="id" 		db-name="ID" 		type="long"		primary="true"/>
+		<column name="fecha" 	db-name="FECHA"		type="Date" />
+		<column name="evento" 	db-name="EVENTO"	type="String" />
+		<column name="tabla" 	db-name="TABLA"		type="String" />
+		<column name="logs" 	db-name="LOGS"		type="String" />
+		<column name="idUser" 	db-name="ID_USER"	type="long" />
+		<order by="desc">
+			<order-column name="fecha" order-by="desc"/>
+		</order>
+	</entity>
+	
+	<entity name="distritoG" table="GENERO_DISTRITOS_MASCARAS" cache-enabled="false" local-service="true" remote-service="false" data-source="base_datos_csjDataSource">
+		<column name="id" 				db-name="ID" 				type="int"	primary="true"></column>
+		<column name="nombre" 			db-name="NOMBRE"			type="String"></column>
+		<column name="nombre_mascara" 	db-name="NOMBRE_MASCARA"	type="String"></column>
+	</entity>
+	
+</service-builder>

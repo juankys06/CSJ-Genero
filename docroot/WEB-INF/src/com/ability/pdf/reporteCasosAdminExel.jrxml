@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteCasos" pageWidth="1424" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="1424" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="baa7c8bf-7a9c-4024-b855-9af79e84b041">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="borde" mode="Opaque">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="anhio" class="java.lang.String"/>
+	<parameter name="fechaI" class="java.lang.String"/>
+	<parameter name="fechaF" class="java.lang.String"/>
+	<parameter name="ciudad" class="java.lang.String"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<parameter name="subCategoria" class="java.lang.String"/>
+	<parameter name="distrito" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="despacho" class="java.lang.String"/>
+	<parameter name="distritoNombre" class="java.lang.String"/>
+	<parameter name="ciudadNombre" class="java.lang.String"/>
+	<parameter name="categoriaNombre" class="java.lang.String"/>
+	<parameter name="subcategoriaNombre" class="java.lang.String"/>
+	<parameter name="nombreDespacho" class="java.lang.String"/>
+	<parameter name="distritosComite" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select row_number() over (order by lv.id) as numero,lv.despacho+' / '+despa.NOMBRE 'despacho',gdm.nombre_mascara 'distrito', lv.radicacion ,lv.demandante , lv.generoDemandante , lv.demandado , lv.generoDemandado, lv.clase_proceso,cat.categoria,sub.subcategoria,td.tipo_decision,lv.ponente,lv.fecha,jur.nombre
+from genero_lv_caso lv join genero_categoria cat on lv.categoria=cat.id
+join genero_subcategoria sub on lv.subcategoria=sub.id
+join genero_tipo_decision td on lv.tipo_decision = td.id
+join DIRECTORIO_PORTAL despa on (lv.despacho=despa.CODIGO)
+join despacho_pru.dbo.ADM_ENTIDAD enti on (SUBSTRING(despa.CODIGO,6,2)=enti.CODIGO)
+join despacho_pru.dbo.ADM_MAPA_JUDICIAL mapa on (mapa.FK_DANEMUNI_TO_MAPA=SUBSTRING(despa.CODIGO,3,3) and mapa.FK_DANEDEPAR_TO_MAPA=SUBSTRING(despa.CODIGO,1,2) and mapa.FK_JURIDICCION_TO_MAPA=enti.FK_ENTIDAD_TO_JURIDICCION)
+join despacho_pru.dbo.ADM_CIRCUITO circu on (circu.id=mapa.FK_CIRCUITO_TO_MAPA)
+join despacho_pru.dbo.ADM_DISTRITO distri on (circu.FK_DISTRITO_TO_CIRCUITO=distri.id)
+join genero_distritos_mascaras gdm on (distri.nombre = gdm.nombre)
+join despacho_pru.dbo.ADM_JURISDICCION jur on (distri.fk_jurisdiccion_distrito = jur.id)
+where lv.anhio =(case $P{anhio} when '-1' then lv.anhio else $P{anhio} end)
+and lv.fecha>=(case $P{fechaI} when '-1' then lv.fecha else $P{fechaI} end)
+and lv.fecha<=(case $P{fechaF} when '-1' then lv.fecha else $P{fechaF} end)
+and SUBSTRING(lv.despacho,1,5)=(case $P{ciudad} when '-1' then SUBSTRING(lv.despacho,1,5) else $P{ciudad} end)
+and lv.categoria=(case $P{categoria} when '-1' then lv.categoria else $P{categoria} end)
+and lv.subcategoria=(case $P{subCategoria} when '-1' then lv.subcategoria else $P{subCategoria} end)
+and despa.nombre like (case $P{nombre} when '-1' then '%%' else '%'+$P{nombre}+'%' end)
+and gdm.nombre_mascara=(case $P{distrito} when '-1' then ''+gdm.nombre_mascara+'' else ''+$P{distrito}+'' end)
+and lv.despacho = (case $P{despacho} when '-1' then lv.despacho else $P{despacho} end)
+and distri.id in ( SELECT * FROM splitstring( $P{distritosComite} ) )]]>
+	</queryString>
+	<field name="numero" class="java.lang.Long"/>
+	<field name="despacho" class="java.lang.String"/>
+	<field name="distrito" class="java.lang.String"/>
+	<field name="radicacion" class="java.lang.String"/>
+	<field name="demandante" class="java.lang.String"/>
+	<field name="generoDemandante" class="java.lang.String"/>
+	<field name="demandado" class="java.lang.String"/>
+	<field name="generoDemandado" class="java.lang.String"/>
+	<field name="clase_proceso" class="java.lang.String"/>
+	<field name="categoria" class="java.lang.String"/>
+	<field name="subcategoria" class="java.lang.String"/>
+	<field name="tipo_decision" class="java.lang.String"/>
+	<field name="ponente" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Timestamp"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="254">
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="1424" height="120" uuid="2af8f2cc-f333-40b0-a6b8-57da4507698f"/>
+				<imageExpression><![CDATA["/logo_genero.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="120" width="1424" height="20" uuid="e9308fec-a246-4ef3-8c77-8dce42f88a55"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Listado de Casos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="0" y="234" width="31" height="20" uuid="c414e079-0b7d-4927-aedc-398f4e3d473a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="187" y="234" width="122" height="20" uuid="a5ab4518-acbe-47c8-a26e-f609d817727c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Despacho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="1297" y="234" width="127" height="20" uuid="70217d74-c706-471e-b191-3981cdcbcfed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subcategoría]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="1086" y="234" width="100" height="20" uuid="d6bc0525-5636-40d3-aa50-f82d385c6e37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha en que se dicta la providencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="779" y="234" width="107" height="20" uuid="e2751a63-f20c-4070-8713-5e67ca9b28f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clase de Proceso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="409" y="234" width="113" height="20" uuid="a2720ba0-3f75-4760-85eb-ea9a508346d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Demandante / víctima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="309" y="234" width="100" height="20" uuid="36551be9-9d76-4578-844b-d3ec8dc05f5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Radicación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="986" y="234" width="100" height="20" uuid="ef499805-64af-4c65-a423-4b76d17448c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ponente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="1186" y="234" width="111" height="20" uuid="862cfc5d-fcf1-49f0-93f8-c97ac2b8a98d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoría]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="886" y="234" width="100" height="20" uuid="0b13c93f-74ec-4f8c-8db5-6ecdea07fd46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Decisión]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="594" y="234" width="113" height="20" uuid="6be5acfe-3477-452e-b8ff-d8e797b9f465"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Demandado / victimario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="522" y="234" width="72" height="20" uuid="3721d34e-d0e9-4a13-96dc-9155a1d1fc05"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="707" y="234" width="72" height="20" uuid="49cbfa10-1ca1-485f-9507-bead72cbac63"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Genero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="140" width="1424" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="1e71bebe-dad5-4902-b511-a0beb8958740"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Filtros:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="707" y="160" width="379" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="1ec160f4-5f00-463a-9b9c-3e8b366e1773"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{despacho}.equals( "-1" )
+?
+$P{nombre}.equals( "-1" )? "" : $P{nombre}
+:
+$P{nombreDespacho}
+)]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="707" y="200" width="379" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="778f358f-b376-451e-a8b1-e4d1b60db167"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ciudadNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="160" width="413" height="20" uuid="77aa7ddd-88ac-4004-aec3-b0ded05d7531"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{anhio}.equals( "-1" )? "" : $P{anhio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="109" y="200" width="413" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="ea39217d-57f7-4126-a45e-e9a9827019ab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoriaNombre}+" / "+$P{subcategoriaNombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="180" width="109" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="52f97153-2ba6-41c8-80c0-8118dd8e4e2e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Rando de Fechas:]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="707" y="180" width="379" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="63e24046-3d76-44fd-a88b-362a5da8318e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{distritoNombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="109" y="180" width="413" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3e45fc9b-ab8a-40e3-be0e-403569b05731"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( !$P{fechaI}.equals( "-1" ) || !$P{fechaF}.equals( "-1" )?
+( $P{fechaI}.equals( "-1" )? "" : $P{fechaI} )
++" / "+
+( $P{fechaF}.equals( "-1" )? "" : $P{fechaF} )
+:
+""
+)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="522" y="160" width="185" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="ce9f2974-d67f-4efc-a383-0982f50b90a9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Nombre Despacho:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="522" y="180" width="185" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="971d4282-1f23-4825-84da-870d34c15bc7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{despacho}.equals( "-1" )
+?
+"Distrito:"
+:
+""
+)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="200" width="109" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d8420c93-6986-4a5c-b6c8-b30668736a5d"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Categoria / Subcategoria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="160" width="109" height="20" uuid="bba3269a-50fe-43f6-a649-50ecd85e0d97"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Año de vigencia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="522" y="200" width="185" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b929146f-bd42-4264-bebb-0cc9584e2f78"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{despacho}.equals( "-1" )
+?
+"Ciudad:"
+:
+""
+)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="borde" x="31" y="234" width="78" height="20" uuid="4d4d5d05-407c-4121-ac8f-b720727fb0ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jurisdiccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="109" y="234" width="78" height="20" uuid="eddc7a35-9b62-47e9-a3da-0396396a96ff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distrito]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="36" splitType="Prevent">
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="0" y="0" width="31" height="36" uuid="10ff86d6-499f-4a8c-89a9-7d7f3467089e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="187" y="0" width="122" height="36" uuid="a6a3ab53-11c6-47e8-b83e-f9cb4f287646"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{despacho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="1297" y="0" width="127" height="36" uuid="f4b0d724-4315-4d90-acad-409b3ef29f44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subcategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="1186" y="0" width="111" height="36" uuid="293ef4c7-0d01-46e5-94cd-cd1b811c24f6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="1086" y="0" width="100" height="36" uuid="d6e6f1da-057d-48b5-a07a-1406da1bc69c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="986" y="0" width="100" height="36" uuid="30491083-c563-4502-8ab7-956943d5b3f3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ponente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="886" y="0" width="100" height="36" uuid="e0bab524-42f2-4f9b-a949-a83c87687117"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_decision}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="779" y="0" width="107" height="36" uuid="11c7b051-968a-49b5-b047-a8327e7d3c8e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clase_proceso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="594" y="0" width="113" height="36" uuid="b1f5bae5-7ee3-4306-bb14-ed99ae17c1c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{demandado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="409" y="0" width="113" height="36" uuid="46265e9b-395d-432b-a600-f1876ea5d0d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{demandante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="309" y="0" width="100" height="36" uuid="86298d63-ef0f-4275-84ed-7e35885c237c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{radicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="707" y="0" width="72" height="36" uuid="d3c6655c-ef76-4d5b-8d28-dd62429bc80c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{generoDemandado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="522" y="0" width="72" height="36" uuid="0a0174b5-3c6e-421f-af79-eaed543c9879"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{generoDemandante}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="31" y="0" width="78" height="36" uuid="2d4740e7-2c36-43b7-b5bb-c6f6fc05c21a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" stretchType="RelativeToBandHeight" x="109" y="0" width="78" height="36" uuid="c88aa21e-0893-49a8-9c7c-aa8f85374cb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{distrito}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

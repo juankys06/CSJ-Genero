@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.ability.genero.server.model.auditoria" />
+	<import class="com.ability.genero.server.model.casoLV" />
+	<import class="com.ability.genero.server.model.categoria" />
+	<import class="com.ability.genero.server.model.claseProceso" />
+	<import class="com.ability.genero.server.model.distritoG" />
+	<import class="com.ability.genero.server.model.encuestaCriterios" />
+	<import class="com.ability.genero.server.model.encuestaEnfoDife" />
+	<import class="com.ability.genero.server.model.generoUsuario" />
+	<import class="com.ability.genero.server.model.generoUsuarioComite" />
+	<import class="com.ability.genero.server.model.juresprudenciaInternacional" />
+	<import class="com.ability.genero.server.model.juresprudenciaNacional" />
+	<import class="com.ability.genero.server.model.normasInteracionales" />
+	<import class="com.ability.genero.server.model.normasNacionales" />
+	<import class="com.ability.genero.server.model.preguntasClave" />
+	<import class="com.ability.genero.server.model.subcategoria" />
+	<import class="com.ability.genero.server.model.tipoDecision" />
+	<class name="com.ability.genero.server.model.impl.auditoriaImpl" table="GENERO_AUDITORIA">
+		<id name="id" column="ID" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="fecha" type="org.hibernate.type.TimestampType" column="FECHA" />
+		<property name="evento" type="com.liferay.portal.dao.orm.hibernate.StringType" column="EVENTO" />
+		<property name="tabla" type="com.liferay.portal.dao.orm.hibernate.StringType" column="TABLA" />
+		<property name="logs" type="com.liferay.portal.dao.orm.hibernate.StringType" column="LOGS" />
+		<property name="idUser" type="com.liferay.portal.dao.orm.hibernate.LongType" column="ID_USER" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.casoLVImpl" table="GENERO_LV_CASO">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="despacho" type="com.liferay.portal.dao.orm.hibernate.StringType" column="DESPACHO" />
+		<property name="radicacion" type="com.liferay.portal.dao.orm.hibernate.StringType" column="RADICACION" />
+		<property name="demandante" type="com.liferay.portal.dao.orm.hibernate.StringType" column="DEMANDANTE" />
+		<property name="demandado" type="com.liferay.portal.dao.orm.hibernate.StringType" column="DEMANDADO" />
+		<property name="claseProceso" type="com.liferay.portal.dao.orm.hibernate.StringType" column="CLASE_PROCESO" />
+		<property name="tipoDecision" type="com.liferay.portal.dao.orm.hibernate.StringType" column="TIPO_DECISION" />
+		<property name="ponente" type="com.liferay.portal.dao.orm.hibernate.StringType" column="PONENTE" />
+		<property name="fecha" type="org.hibernate.type.TimestampType" column="FECHA" />
+		<property name="categoria" type="com.liferay.portal.dao.orm.hibernate.StringType" column="CATEGORIA" />
+		<property name="subCategoria" type="com.liferay.portal.dao.orm.hibernate.StringType" column="SUBCATEGORIA" />
+		<property name="respuestas1" type="com.liferay.portal.dao.orm.hibernate.StringType" column="RESPUESTAS1" />
+		<property name="respuestas2" type="com.liferay.portal.dao.orm.hibernate.StringType" column="RESPUESTAS2" />
+		<property name="anhio" type="com.liferay.portal.dao.orm.hibernate.StringType" column="ANHIO" />
+		<property name="generoDemandante" type="com.liferay.portal.dao.orm.hibernate.StringType" column="GENERODEMANDANTE" />
+		<property name="generoDemandado" type="com.liferay.portal.dao.orm.hibernate.StringType" column="GENERODEMANDADO" />
+		<property name="archivo" type="com.liferay.portal.dao.orm.hibernate.StringType" column="ARCHIVO" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.categoriaImpl" table="GENERO_CATEGORIA">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="categoria" type="com.liferay.portal.dao.orm.hibernate.StringType" column="CATEGORIA" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.claseProcesoImpl" table="GENERO_CLASE_PROCESO">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="claseProceso" type="com.liferay.portal.dao.orm.hibernate.StringType" column="CLASE_PROCESO" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.distritoGImpl" table="GENERO_DISTRITOS_MASCARAS">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="nombre" type="com.liferay.portal.dao.orm.hibernate.StringType" column="NOMBRE" />
+		<property name="nombre_mascara" type="com.liferay.portal.dao.orm.hibernate.StringType" column="NOMBRE_MASCARA" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.encuestaCriteriosImpl" table="GENERO_ENCUESTA_CRITERIOS">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="pregunta" type="com.liferay.portal.dao.orm.hibernate.StringType" column="PREGUNTA" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.encuestaEnfoDifeImpl" table="GENERO_ENCUESTA_ENFOQUEDIFERENCIAL">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="pregunta" type="com.liferay.portal.dao.orm.hibernate.StringType" column="PREGUNTA" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.generoUsuarioImpl" table="GENERO_USUARIOS">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="despacho" type="com.liferay.portal.dao.orm.hibernate.StringType" column="DESPACHO" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="USER_ID" />
+		<property name="fecha_creacion" type="org.hibernate.type.TimestampType" column="FECHA_CREACION" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.generoUsuarioComiteImpl" table="GENERO_USUARIOS_COMITE">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="Distrito" type="com.liferay.portal.dao.orm.hibernate.StringType" column="DISTRITO" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.StringType" column="USER_ID" />
+		<property name="fecha_creacion" type="org.hibernate.type.TimestampType" column="FECHA_CREACION" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.juresprudenciaInternacionalImpl" table="GENERO_JURISPRUDENCIA_INTERNACIONAL">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="referencias" type="com.liferay.portal.dao.orm.hibernate.StringType" column="REFERENCIAS" />
+		<property name="anhio" type="com.liferay.portal.dao.orm.hibernate.StringType" column="ANHIO" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" column="URL" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.juresprudenciaNacionalImpl" table="GENERO_JURISPRUDENCIA_NACIONAL">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="referencias" type="com.liferay.portal.dao.orm.hibernate.StringType" column="REFERENCIAS" />
+		<property name="corporacion" type="com.liferay.portal.dao.orm.hibernate.StringType" column="CORPORACION" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" column="URL" />
+		<property name="ambito" type="com.liferay.portal.dao.orm.hibernate.StringType" column="AMBITO" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.normasInteracionalesImpl" table="GENERO_NORMAS_INTERNACIONALES">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="conferencias" type="com.liferay.portal.dao.orm.hibernate.StringType" column="CONFERENCIAS" />
+		<property name="anhio" type="com.liferay.portal.dao.orm.hibernate.StringType" column="ANHIO" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" column="URL" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.normasNacionalesImpl" table="GENERO_NORMAS_NACIONALES">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="normativas" type="com.liferay.portal.dao.orm.hibernate.StringType" column="NORMATIVAS" />
+		<property name="anhio" type="com.liferay.portal.dao.orm.hibernate.StringType" column="ANHIO" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" column="URL" />
+		<property name="ambito" type="com.liferay.portal.dao.orm.hibernate.StringType" column="AMBITO" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.preguntasClaveImpl" table="GENERO_PREGUNTAS_CLAVES">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="pregunta" type="com.liferay.portal.dao.orm.hibernate.StringType" column="PREGUNTA" />
+		<property name="respuesta" type="com.liferay.portal.dao.orm.hibernate.StringType" column="RESPUESTA" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.subcategoriaImpl" table="GENERO_SUBCATEGORIA">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="idCategoria" type="com.liferay.portal.dao.orm.hibernate.IntegerType" column="ID_CATEGORIA" />
+		<property name="subcategoria" type="com.liferay.portal.dao.orm.hibernate.StringType" column="SUBCATEGORIA" />
+		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" column="URL" />
+	</class>
+	<class name="com.ability.genero.server.model.impl.tipoDecisionImpl" table="GENERO_TIPO_DECISION">
+		<id name="id" column="ID" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="tipoDecision" type="com.liferay.portal.dao.orm.hibernate.StringType" column="TIPO_DECISION" />
+	</class>
+</hibernate-mapping>

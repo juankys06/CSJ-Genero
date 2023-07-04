@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="encuesta1" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d3b0e284-7c08-4945-8bde-cb97af5eae05">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="borde" mode="Opaque">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="respuestas2" class="java.lang.String"/>
+	<parameter name="categorias1" class="java.lang.String"/>
+	<parameter name="cantidadAplican" class="java.lang.String"/>
+	<parameter name="cantidadNoAplican" class="java.lang.String"/>
+	<parameter name="cantidadTotal" class="java.lang.String"/>
+	<parameter name="numeroCasos" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select row_number() over (order by id) as numero,*
+from genero_encuesta_criterios]]>
+	</queryString>
+	<field name="numero" class="java.lang.Long"/>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="pregunta" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15">
+			<staticText>
+				<reportElement style="borde" x="444" y="0" width="49" height="15" uuid="27b3b8d2-1dd8-499f-8096-76229dc4e326"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="14" y="0" width="49" height="15" uuid="da3b056c-eb66-4a9e-be18-18ae806e7cd2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="63" y="0" width="381" height="15" uuid="f3ef5e1b-ab2b-4ae1-9d02-06fd5851ffd7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[CRITERIOS ORIENTADORES RELACIONADOS CON EL PROCEDIMIENTO Y LA DECISIÓN JUDICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="493" y="0" width="49" height="15" uuid="2bf4cb26-e9d1-4709-898f-e96085354e6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="40">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="borde" x="63" y="0" width="381" height="40" uuid="a9226a02-e9dd-4e40-b75d-0026698e3bb5"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pregunta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="borde" x="14" y="0" width="49" height="40" uuid="31bf3426-2e25-4ea2-885d-7a5dd7f3dc7a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["3.2."+$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="false">
+				<reportElement style="borde" x="493" y="0" width="49" height="40" uuid="25d537df-c805-42e1-a1fe-ceed2083d3e1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(Float.valueOf($P{respuestas2}.split("/")[$F{numero}.intValue()-1])/Float.valueOf($P{numeroCasos}))*100]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="borde" x="444" y="0" width="49" height="40" uuid="d9a5b2c4-7f11-4e17-a65e-f2a012035834"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{respuestas2}.split("/")[$F{numero}.intValue()-1]]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="142">
+			<staticText>
+				<reportElement style="borde" x="493" y="0" width="49" height="15" uuid="289f2204-6995-4504-8c6b-f39d55ef8d18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="14" y="0" width="49" height="15" uuid="dee650f4-45e4-45cc-8379-5fb8692db22a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="63" y="0" width="381" height="15" uuid="088f6ff8-a449-4ea6-9996-8ae4f025cf91"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[ESTADÍSTICA DE APLICACIÓN DE LOS CRITERIOS DE LA LISTA DE VERIFICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="444" y="0" width="49" height="15" uuid="e9fa03ba-b62c-434e-855b-07fd61a64ad9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="63" y="15" width="381" height="15" uuid="018b58ca-eac6-4283-92e5-b825b01a75ab"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Criterios con perspectiva de género desde el enfoque diferencial que se aplican al caso en estudio]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement style="borde" x="493" y="15" width="49" height="15" uuid="9b3f00f0-2896-435a-b56d-64710ce73c19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(Float.valueOf($P{cantidadAplican})/Float.valueOf($P{cantidadTotal}))*100]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" x="444" y="15" width="49" height="15" uuid="9df52205-e0fc-4192-b153-a360f0696276"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidadAplican}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="borde" x="14" y="15" width="49" height="15" uuid="e49961d8-97b7-4da1-877b-bbd26a0d6095"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4.1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="63" y="30" width="381" height="15" uuid="94dbda7d-a855-47eb-a080-02bf5c7de220"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[Criterios con perspectiva de género desde el enfoque diferencial que no se aplican al caso en estudio]]></text>
+			</staticText>
+			<textField pattern="###0.00">
+				<reportElement style="borde" x="493" y="30" width="49" height="15" uuid="8f89035d-388e-4057-8f54-539fec2117a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(Float.valueOf($P{cantidadNoAplican})/Float.valueOf($P{cantidadTotal}))*100]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="borde" x="444" y="30" width="49" height="15" uuid="2e3db021-60a7-4722-bfe2-56e87999611c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidadNoAplican}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="borde" x="14" y="30" width="49" height="15" uuid="b1229486-bb59-48b7-9761-7597087ecb8b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4.2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="63" y="45" width="381" height="15" uuid="6ea3312a-49f2-4d66-a8e8-e228fd5f0597"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<text><![CDATA[UTILIZACIÓN DE CATEGORÍAS APLICABLES A LA PERSPECTIVA DE GÉNERO Y ENFOQUE DIFERENCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="493" y="45" width="49" height="15" uuid="74f507e5-be28-4217-a0b1-9a59e3b8ee08"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="444" y="45" width="49" height="15" uuid="5ba54b27-389c-49e5-aa08-d17c8c9d4deb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="borde" x="14" y="45" width="49" height="15" uuid="c1420704-885f-4831-aa10-b2ceb5a46458"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="60" width="555" height="82" uuid="68dca34c-4776-4f9a-aefd-7b84d1c62cad"/>
+				<subreportParameter name="categorias1">
+					<subreportParameterExpression><![CDATA[$P{categorias1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cantidadAplican">
+					<subreportParameterExpression><![CDATA[$P{cantidadAplican}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cantidadNoAplican">
+					<subreportParameterExpression><![CDATA[$P{cantidadNoAplican}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cantidadTotal">
+					<subreportParameterExpression><![CDATA[$P{cantidadTotal}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="numeroCasos">
+					<subreportParameterExpression><![CDATA[$P{numeroCasos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["\\com\\ability\\pdf\\encuesta2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

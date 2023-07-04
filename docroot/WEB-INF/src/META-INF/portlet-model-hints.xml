@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.ability.genero.server.model.auditoria">
+		<field name="id" type="long" />
+		<field name="fecha" type="Date" />
+		<field name="evento" type="String" />
+		<field name="tabla" type="String" />
+		<field name="logs" type="String" />
+		<field name="idUser" type="long" />
+	</model>
+	<model name="com.ability.genero.server.model.casoLV">
+		<field name="id" type="int" />
+		<field name="despacho" type="String" />
+		<field name="radicacion" type="String" />
+		<field name="demandante" type="String" />
+		<field name="demandado" type="String" />
+		<field name="claseProceso" type="String" />
+		<field name="tipoDecision" type="String" />
+		<field name="ponente" type="String" />
+		<field name="fecha" type="Date" />
+		<field name="categoria" type="String" />
+		<field name="subCategoria" type="String" />
+		<field name="respuestas1" type="String" />
+		<field name="respuestas2" type="String" />
+		<field name="anhio" type="String" />
+		<field name="generoDemandante" type="String" />
+		<field name="generoDemandado" type="String" />
+		<field name="archivo" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.categoria">
+		<field name="id" type="int" />
+		<field name="categoria" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.claseProceso">
+		<field name="id" type="int" />
+		<field name="claseProceso" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.distritoG">
+		<field name="id" type="int" />
+		<field name="nombre" type="String" />
+		<field name="nombre_mascara" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.encuestaCriterios">
+		<field name="id" type="int" />
+		<field name="pregunta" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.encuestaEnfoDife">
+		<field name="id" type="int" />
+		<field name="pregunta" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.generoUsuario">
+		<field name="id" type="int" />
+		<field name="despacho" type="String" />
+		<field name="userId" type="String" />
+		<field name="fecha_creacion" type="Date" />
+	</model>
+	<model name="com.ability.genero.server.model.generoUsuarioComite">
+		<field name="id" type="int" />
+		<field name="Distrito" type="String" />
+		<field name="userId" type="String" />
+		<field name="fecha_creacion" type="Date" />
+	</model>
+	<model name="com.ability.genero.server.model.juresprudenciaInternacional">
+		<field name="id" type="int" />
+		<field name="referencias" type="String" />
+		<field name="anhio" type="String" />
+		<field name="url" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.juresprudenciaNacional">
+		<field name="id" type="int" />
+		<field name="referencias" type="String" />
+		<field name="corporacion" type="String" />
+		<field name="url" type="String" />
+		<field name="ambito" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.normasInteracionales">
+		<field name="id" type="int" />
+		<field name="conferencias" type="String" />
+		<field name="anhio" type="String" />
+		<field name="url" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.normasNacionales">
+		<field name="id" type="int" />
+		<field name="normativas" type="String" />
+		<field name="anhio" type="String" />
+		<field name="url" type="String" />
+		<field name="ambito" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.preguntasClave">
+		<field name="id" type="int" />
+		<field name="pregunta" type="String" />
+		<field name="respuesta" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.subcategoria">
+		<field name="id" type="int" />
+		<field name="idCategoria" type="int" />
+		<field name="subcategoria" type="String" />
+		<field name="url" type="String" />
+	</model>
+	<model name="com.ability.genero.server.model.tipoDecision">
+		<field name="id" type="int" />
+		<field name="tipoDecision" type="String" />
+	</model>
+</model-hints>

@@ -1,0 +1,397 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.ability.genero.server.model.impl.auditoriaModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="fecha">
+				<column name="FECHA" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="evento">
+				<column name="EVENTO" />
+			</basic>
+			<basic name="tabla">
+				<column name="TABLA" />
+			</basic>
+			<basic name="logs">
+				<column name="LOGS" />
+			</basic>
+			<basic name="idUser">
+				<column name="ID_USER" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.casoLVModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="despacho">
+				<column name="DESPACHO" />
+			</basic>
+			<basic name="radicacion">
+				<column name="RADICACION" />
+			</basic>
+			<basic name="demandante">
+				<column name="DEMANDANTE" />
+			</basic>
+			<basic name="demandado">
+				<column name="DEMANDADO" />
+			</basic>
+			<basic name="claseProceso">
+				<column name="CLASE_PROCESO" />
+			</basic>
+			<basic name="tipoDecision">
+				<column name="TIPO_DECISION" />
+			</basic>
+			<basic name="ponente">
+				<column name="PONENTE" />
+			</basic>
+			<basic name="fecha">
+				<column name="FECHA" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="categoria">
+				<column name="CATEGORIA" />
+			</basic>
+			<basic name="subCategoria">
+				<column name="SUBCATEGORIA" />
+			</basic>
+			<basic name="respuestas1">
+				<column name="RESPUESTAS1" />
+			</basic>
+			<basic name="respuestas2">
+				<column name="RESPUESTAS2" />
+			</basic>
+			<basic name="anhio">
+				<column name="ANHIO" />
+			</basic>
+			<basic name="generoDemandante">
+				<column name="GENERODEMANDANTE" />
+			</basic>
+			<basic name="generoDemandado">
+				<column name="GENERODEMANDADO" />
+			</basic>
+			<basic name="archivo">
+				<column name="ARCHIVO" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.categoriaModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="categoria">
+				<column name="CATEGORIA" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.claseProcesoModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="claseProceso">
+				<column name="CLASE_PROCESO" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.distritoGModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="nombre">
+				<column name="NOMBRE" />
+			</basic>
+			<basic name="nombre_mascara">
+				<column name="NOMBRE_MASCARA" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.encuestaCriteriosModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="pregunta">
+				<column name="PREGUNTA" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.encuestaEnfoDifeModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="pregunta">
+				<column name="PREGUNTA" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.generoUsuarioModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="despacho">
+				<column name="DESPACHO" />
+			</basic>
+			<basic name="userId">
+				<column name="USER_ID" />
+			</basic>
+			<basic name="fecha_creacion">
+				<column name="FECHA_CREACION" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.generoUsuarioComiteModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="Distrito">
+				<column name="DISTRITO" />
+			</basic>
+			<basic name="userId">
+				<column name="USER_ID" />
+			</basic>
+			<basic name="fecha_creacion">
+				<column name="FECHA_CREACION" />
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.juresprudenciaInternacionalModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="referencias">
+				<column name="REFERENCIAS" />
+			</basic>
+			<basic name="anhio">
+				<column name="ANHIO" />
+			</basic>
+			<basic name="url">
+				<column name="URL" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.juresprudenciaNacionalModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="referencias">
+				<column name="REFERENCIAS" />
+			</basic>
+			<basic name="corporacion">
+				<column name="CORPORACION" />
+			</basic>
+			<basic name="url">
+				<column name="URL" />
+			</basic>
+			<basic name="ambito">
+				<column name="AMBITO" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.normasInteracionalesModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="conferencias">
+				<column name="CONFERENCIAS" />
+			</basic>
+			<basic name="anhio">
+				<column name="ANHIO" />
+			</basic>
+			<basic name="url">
+				<column name="URL" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.normasNacionalesModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="normativas">
+				<column name="NORMATIVAS" />
+			</basic>
+			<basic name="anhio">
+				<column name="ANHIO" />
+			</basic>
+			<basic name="url">
+				<column name="URL" />
+			</basic>
+			<basic name="ambito">
+				<column name="AMBITO" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.preguntasClaveModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="pregunta">
+				<column name="PREGUNTA" />
+			</basic>
+			<basic name="respuesta">
+				<column name="RESPUESTA" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.subcategoriaModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="idCategoria">
+				<column name="ID_CATEGORIA" />
+			</basic>
+			<basic name="subcategoria">
+				<column name="SUBCATEGORIA" />
+			</basic>
+			<basic name="url">
+				<column name="URL" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.ability.genero.server.model.impl.tipoDecisionModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID" />
+			</id>
+			<basic name="tipoDecision">
+				<column name="TIPO_DECISION" />
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.ability.genero.server.model.impl.auditoriaImpl" name="auditoria">
+		<table name="GENERO_AUDITORIA" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.casoLVImpl" name="casoLV">
+		<table name="GENERO_LV_CASO" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.categoriaImpl" name="categoria">
+		<table name="GENERO_CATEGORIA" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.claseProcesoImpl" name="claseProceso">
+		<table name="GENERO_CLASE_PROCESO" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.distritoGImpl" name="distritoG">
+		<table name="GENERO_DISTRITOS_MASCARAS" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.encuestaCriteriosImpl" name="encuestaCriterios">
+		<table name="GENERO_ENCUESTA_CRITERIOS" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.encuestaEnfoDifeImpl" name="encuestaEnfoDife">
+		<table name="GENERO_ENCUESTA_ENFOQUEDIFERENCIAL" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.generoUsuarioImpl" name="generoUsuario">
+		<table name="GENERO_USUARIOS" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.generoUsuarioComiteImpl" name="generoUsuarioComite">
+		<table name="GENERO_USUARIOS_COMITE" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.juresprudenciaInternacionalImpl" name="juresprudenciaInternacional">
+		<table name="GENERO_JURISPRUDENCIA_INTERNACIONAL" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.juresprudenciaNacionalImpl" name="juresprudenciaNacional">
+		<table name="GENERO_JURISPRUDENCIA_NACIONAL" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.normasInteracionalesImpl" name="normasInteracionales">
+		<table name="GENERO_NORMAS_INTERNACIONALES" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.normasNacionalesImpl" name="normasNacionales">
+		<table name="GENERO_NORMAS_NACIONALES" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.preguntasClaveImpl" name="preguntasClave">
+		<table name="GENERO_PREGUNTAS_CLAVES" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.subcategoriaImpl" name="subcategoria">
+		<table name="GENERO_SUBCATEGORIA" />
+		<attributes />
+	</entity>
+	<entity class="com.ability.genero.server.model.impl.tipoDecisionImpl" name="tipoDecision">
+		<table name="GENERO_TIPO_DECISION" />
+		<attributes />
+	</entity>
+</entity-mappings>
